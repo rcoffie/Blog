@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<section class="text-gray-600 body-font">
+  
+  
+  <div class="container px-5 py- mx-auto">
+   
+    <div class="flex flex-wrap w-full mb-20">
+
+      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Pitchfork Kickstarter Taxidermy</h1>
+        <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+      </div>
+      <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+    </div>
+    
+
+    <div class="flex flex-wrap -m-4">
+      {% if posts %}
+
+      {% for post in posts %}
+      <div class="xl:w-1/4 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ post.post_image.url }}" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ post.title }}</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">By {{ post.author}}</h2>
+          <p class="leading-relaxed text-base">{{ post.body | truncatewords:20 }}</p>
+
+          <a href="blog/{{ post.pk }}/"
+          class="inline-flex items-center font-semibold text-blue-700 md:mb-2 lg:mb-0 hover:text-blue-400 ">
+          Learn More
+          <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20"
+              height="20" fill="currentColor">
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
+              </svg>
+      </a>
+        </div>
+      </div>
+    {% endfor %}
+    {% endif %}
+
+     
+    
+    </div>
+  </div>
+</section>
+   
+  
+
+{% endblock %}
+
+
