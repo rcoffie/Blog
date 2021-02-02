@@ -4,7 +4,7 @@
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+   {% block title %} <title>Blog|  </title >{% endblock  %}
 </head>
 <body>
 
@@ -19,8 +19,8 @@
       <span class="ml-3 text-xl">Tailblocks</span>
     </a>
     <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-      <a class="mr-5 hover:text-gray-900">First Link</a>
-      <a class="mr-5 hover:text-gray-900">Second Link</a>
+      <a href="{% url 'blog:index' %}" class="mr-5 hover:text-gray-900">Home</a>
+      <a href="{% url 'blog:create' %}" class="mr-5 hover:text-gray-900">Add Post</a>
       <a class="mr-5 hover:text-gray-900">Third Link</a>
       <a class="mr-5 hover:text-gray-900">Fourth Link</a>
     </nav>
