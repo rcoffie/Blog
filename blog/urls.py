@@ -6,7 +6,8 @@ app_name = 'blog'
 urlpatterns = [
 path('',views.Home,name='index'),
 path('create/',views.Create,name='create'),
-path('<int:id>/',views.Detail)
+path('detail/<int:id>/',views.PostDetail,name='detail')
+
 ]
 
 

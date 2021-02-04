@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Post
+from .models import Post,Comment
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -11,10 +11,18 @@ def Home(request):
   return render(request,'blog/index.html',context)
 
 # Detail View 
-def Detail(request, id):
+def PostDetail(request, id):
 
   post = Post.objects.get(id=id)
-  context =  {'post':post}
+  comments = Comment.objects.filter(post=post).order_by('-id')
+  context =  {'post':post,'comments':comments}
+  if request.method == 'POST':
+    content = request.POST['content']
+    comment = Comment.objects.create(content=content,user=request.user,post=post)
+    print(comment)
+    """ comment.save()
+    return redirect('/') """
+
 
   return render(request,'blog/detail.html',context)
 
