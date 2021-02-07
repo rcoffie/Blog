@@ -1,90 +1,39 @@
 {% extends 'base.html' %}
 
 
-
 {% block content %}
-<section class="text-gray-600 body-font">
+
+
+<div class="container mt-4">
   
-  
-  <div class="container px-5 py- mx-auto">
-   
-    <div class="flex flex-wrap w-full mb-20">
-
-      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Pitchfork Kickstarter Taxidermy</h1>
-        <div class="h-1 w-20 bg-indigo-500 rounded"></div>
-      </div>
-      <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
-    </div>
-    
-
-    <div class="flex flex-wrap -m-4">
-      {% if posts %}
-
-      {% for post in posts %}
-      <div class="xl:w-1/4 md:w-1/2 p-4">
-        <div class="bg-gray-100 p-6 rounded-lg">
-          <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ post.postImage.url }}" alt="content">
-          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ post.title}}</h2>
-          
-          <p class="leading-relaxed text-base">{{ post.body | truncatewords:20 }}</p>
-          
-          
-          <a href="{% url 'blog:detail' post.id %}"
-          class="inline-flex items-center font-semibold text-blue-700 md:mb-2 lg:mb-0 hover:text-blue-400 ">
-          Learn More
-          <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20"
-              height="20" fill="currentColor">
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path
-                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
-              </svg>
-      </a>
-      
-      <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ post.created }}</h3>
+ 
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts %}
+    <div class="col">
+     <div class="card shadow-lg rounded"  >
+        <img src="{{post.postImage.url}}" class="card-img-top img-fluid" style="width: auto; height: 250px;" alt="...">
+        
+        <div class="card-body">
+          <h5 class="card-title"> <a href="{% url 'blog:detail' post.id %}"> {{post.title}} </a>  </h5>
+          <p class="card-text">{{post.body|truncatewords:20 }}</p>
         </div>
-
+        <div class="card-footer">
+          <small class="text-muted">{{post.created }}</small>
+        </div>
       </div>
-    {% endfor %}
-    {% endif %}
-
-     
-    
     </div>
-
-    
-    <div class="flex py-8">
-      <a href="#" class="mx-1 px-3 py-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-600 rounded-md cursor-not-allowed">
-          previous
-      </a>
-
-      <a href="#" class="mx-1 px-3 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200 rounded-md">
-          1
-      </a>
-
-      <a href="#" class="mx-1 px-3 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200 rounded-md">
-          2
-      </a>
-
-      <a href="#" class="mx-1 px-3 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200 rounded-md">
-          3
-      </a>
-
-      <a href="#" class="mx-1 px-3 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200 rounded-md">
-          Next
-      </a>
+    {% endfor %}
+ 
+  
+ 
   </div>
 
+ 
     
-  </div>
 
   
+</div>
 
 
-</section>
-   
-  
 
 {% endblock %}
-
-
