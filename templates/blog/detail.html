@@ -47,7 +47,7 @@
       <h5 class="card-header">{{ comments.count }} comment{{ comments|pluralize}}</h5>
       {% for comment in comments %}
       <div class="card-body">
-        <p> <strong> {{ comment.user }} </strong>  <small class="text-muted">{{ comment.comment_date | timesince  }}</small> </p>
+        <p> <strong> {{ comment.user }} </strong>  <small class="text-muted">{{ comment.comment_date | timesince  }} ago</small> </p>
         <p class="card-text">{{ comment.content}}</p>
         <hr>
        
