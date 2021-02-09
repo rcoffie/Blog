@@ -1,6 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Post,Comment
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy,reverse
 
 # Create your views here.
 
@@ -15,7 +17,8 @@ def PostDetail(request, id):
 
   post = Post.objects.get(id=id)
   comments = Comment.objects.filter(post=post).order_by('-id')
-  context =  {'post':post,'comments':comments}
+  likes  = post.likes.count()
+  context =  {'post':post,'comments':comments,'likes':likes}
   if request.method == 'POST':
     content = request.POST['content']
     comment = Comment.objects.create(content=content,user=request.user,post=post)
@@ -43,6 +46,15 @@ def Create(request):
     
 
   return render(request,'blog/create.html')
+
+
+
+
+def likes(request, pk):
+  post = get_object_or_404(Post, id=request.POST.get('post_id'))
+  post.likes.add(request.user)
+
+  return redirect('/')
 
 
 
