@@ -17,12 +17,19 @@
           <div class=" clearfix">
             <form action="{% url 'blog:likes' post.id %}" method="POST">
               {% csrf_token %}
-            <button type="submit" value="{{post.id}}" name="post_id" class="btn btn-primary float-start"><i class="bi bi-hand-thumbs-up"></i> {{likes}}</button>
+
+            {% if request.user is authenticated  %}
+             <button type="submit" value="{{post.id}}" name="post_id" class="btn btn-primary float-start" ><i class="bi bi-hand-thumbs-up" ></i> {{likes}}</button>
+             {% else %}
+            <button type="submit" value="{{post.id}}" name="post_id" class="btn btn-primary float-start" disabled><i class="bi bi-hand-thumbs-up"></i> {{likes}}</button>
+
+            {% endif %}
+
             </form>
-             
-            <form action="" method="POST">
+            
+           <!--  <form action="" method="POST">
             <button type="button" class="btn btn-primary float-end"> <i class="bi bi-hand-thumbs-down"></i> </button>
-          </form>
+          </form> -->
           </div>
 
       

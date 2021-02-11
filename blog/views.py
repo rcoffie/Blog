@@ -51,8 +51,12 @@ def Create(request):
 
 
 def likes(request, pk):
+  
   post = get_object_or_404(Post, id=request.POST.get('post_id'))
-  post.likes.add(request.user)
+  if post.likes.filter(id=request.user.id).exists():
+    post.likes.remove(request.user)
+  else:
+     post.likes.add(request.user)
   
   return redirect('/detail/'+str(post.id))
 
